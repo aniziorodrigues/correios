@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+	<title>Intranet 2.0</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		header {
+			display: flex;
+			border-bottom: 3px rgba(255,255,255,1) solid;
+			padding: 5px;
+			background-color: rgba(0,0,0,1);
+			color: rgba(255,255,255,1);
+		}
+		header > * {
+			padding: 3px;
+			width: min-content;
+			margin: 3px 5px;
+			min-width: 70px;
+		}
+		main {
+			display: grid;
+			grid-template-columns: min-content auto;
+		}
+		input, select {
+			padding: 5px;
+			margin: 3px 0;
+		}
+		iframe {
+			width: 100%;
+			height: 100%;
+		}
+		#pagina {
+			border-left: 3px rgba(255,255,255,1) solid;
+			padding: 5px;
+		}
+		.coluna > * {
+			display: block;
+		}
+		.lista_links {
+			display: block;
+			list-style: none;
+			width: max-content;
+			background-color: rgba(0,0,0,1);
+			color: rgba(255,255,255,1);
+			padding: 3px;
+			transition: color ease 2s;
+			transition: background-color ease 1s;
+		}
+		.lista_links > li {
+			display: grid;
+			grid-template-columns: 1fr min-content;
+			padding: 5px;
+			border: 1px rgba(10,100,100,1) solid;
+		}
+		.lista_links > li:hover {
+			border: 1px rgba(255,255,255,1) solid;
+			background-color: rgba(255,255,255,0.3);
+			cursor: pointer;
+		}
+		.lista_links > li > a {
+			color: rgba(0,255,0,1);
+			text-decoration: none;
+			margin-left: 5px;
+			padding: 0px 7px;
+		}
+		.lista_links > li > a:hover {
+			color: rgba(255,0,0,1);
+			background-color: rgba(0,255,0,1);
+		}
+		.ocultar_menu, .ocultar_menu > li {
+			width: 0px;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			color: rgba(0,0,0,0);
+			background-color: rgba(255,255,255,0);
+		}
+		.oculto {
+			display: none;
+		}
+		.alinhamento_texto_horizontal_centro {
+			text-align: center;
+		}
+		.folha_14_etiquetas {
+			display: grid;
+			grid-template-columns: 96mm 96mm;
+			grid-template-rows: repeat(7, 36);
+			gap: 2mm 6mm;
+			padding: 0;
+			margin: 16.5mm 6mm;
+			width: 210mm;
+			height: 297mm;
+		}
+		.folha_14_etiquetas > * {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+		.formulario > * {
+			display: block;
+			min-width: 200px;
+		}
+		.formulario a {
+			width: fit-content;
+		}
+		.formulario > label {
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<header id="header">
+		<button id="botao_menu">Esconder Menu</button>
+		<div class="coluna">
+			<label for="campo_pesquisa_link">Pesquisar Sistema</label>
+			<input type="search" id="campo_pesquisa_link" placeholder="Digite para pesquisar">
+		</div>
+		<div class="coluna">
+			<form id="form_rastrear_objeto"></form>
+			<label for="campo_rastrear_objeto">Rastrear Objeto</label>
+			<input type="search" id="campo_rastrear_objeto" placeholder="Digite para rastrear" form="form_rastrear_objeto">
+		</div>
+	</header>
+	<main>
+		<ul id="links" class="lista_links"></ul>
+		<div id="pagina">
+			<h1 class="alinhamento_texto_horizontal_centro">
+				Intranet 2.0
+			</h1>
+			<h2 class="alinhamento_texto_horizontal_centro">
+				Versão 1.3.0.9
+			</h2>
+			<h3>Em desenvolvimento</h3>
+			<p>
+				Impressão de etiquetas adesivas
+			</p>
+		</div>
+		<div id="pagina_etiqueta_adesiva" class="oculto">
+			<button id="botao_imprimir_etiqueta_adesiva">Imprimir</button>
+			<div class="folha_14_etiquetas">
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+				<textarea></textarea>
+			</div>
+		</div>
+		<div id="pagina_declaracao_de_conteudo" class="oculto">
+			<style>
+				.declaracao_conteudo h4 {
+					font-size: 11pt;
+					text-align: center;
+				}
+				.declaracao_conteudo h3 {
+					font-size: 13pt;
+					text-align: center;
+				}
+				.declaracao_conteudo h2 {
+					font-size: 15pt;
+					text-align: center;
+				}
+				.declaracao_conteudo h1 {
+					font-size: 17pt;
+					text-align: center;
+				}
+				.declaracao_conteudo {
+				  font-size: 10pt;
+				  margin-bottom: 5px;
+				}
+				.declaracao_conteudo, .declaracao_conteudo * {
+				  width: 100%;
+				  border: 1px black solid;
+				  margin: 0;
+				  padding: 0;
+				}
+				.declaracao_conteudo > :nth-child(2) {
+				  display: grid;
+				  grid-template-columns: 1fr 1fr;
+				}
+				.declaracao_conteudo > :nth-child(2) > * {
+				  border: 1px black solid;
+				}
+				.declaracao_conteudo > :nth-child(2) > :first-child > :nth-child(4), .declaracao_conteudo > :nth-child(2) > :last-child > :nth-child(4) {
+				  height: 50px;
+				}
+				.declaracao_conteudo > :nth-child(2) > :first-child > :nth-child(6), .declaracao_conteudo > :nth-child(2) > :last-child > :nth-child(6) {
+				  display: grid;
+				  grid-template-columns: 1fr 1fr;
+				}
+				.declaracao_conteudo > :nth-child(4) {
+				  display: grid;
+				  grid-template-columns: min-content auto min-content min-content;
+				  text-align: center;
+				}
+				.declaracao_conteudo > :nth-child(4) > :nth-child(4) {
+				  width: 100px;
+				}
+				.declaracao_conteudo > :nth-child(4) > :nth-child(25) {
+				  grid-column-start: 1;
+				  grid-column-end: 3;
+				  text-align: right;
+				}
+				.declaracao_conteudo > :nth-child(5) {
+				  font-size: 75%;
+				}
+				.declaracao_conteudo > :nth-child(6) {
+				  display: flex;
+				  align-items: end;
+				  justify-content: center;
+				  height: 50px;
+				  padding-bottom: 5px;
+				}
+				.declaracao_conteudo > :nth-child(6) * {
+				  width: fit-content;
+				  margin-left: 5px;
+			  	  margin-right: 5px;
+				  border: 0;
+				}
+				.declaracao_conteudo > :nth-child(7) {
+				  font-size: 75%;
+				}
+				</style>
+				<div class="declaracao_conteudo">
+					<h1>DECLARAÇÃO DE CONTEÚDO</h1>
+					<div>
+						<div>
+							<h3>REMETENTE</h3>
+							<div>Nome:</div>
+							<div>CPF/CNPJ:</div>
+							<div>Endereço:</div>
+							<div>Cidade: DIAMANTINA</div>
+							<div>
+								<div>Estado: MG</div>
+								<div>CEP: 39100-000</div>
+							</div>
+						</div>
+						<div>
+							<h3>DESTINATÁRIO</h3>
+							<div>Nome:</div>
+							<div>CPF/CNPJ:</div>
+							<div>Endereço:</div>
+							<div>Cidade:</div>
+							<div>
+								<div>Estado:</div>
+								<div>CEP:</div>
+							</div>
+						</div>
+					</div>
+					<h2>IDENTIFICAÇÃO DOS BENS</h2>
+					<div>
+						<div>ITEM</div><div>CONTEÚDO</div><div>QUANTIDADE</div><div>VALOR</div>
+						<div>1</div><div></div><div></div><div></div>
+						<div>2</div><div></div><div></div><div></div>
+						<div>3</div><div></div><div></div><div></div>
+						<div>4</div><div></div><div></div><div></div>
+						<div>5</div><div></div><div></div><div></div>
+						<div>TOTAIS</div><div></div><div></div>
+					</div>
+					<div>
+						Declaro que não me enquadro no conceito de contribuinte previsto no art. 4º da Lei Complementar nº 87/1996, uma vez que não realizo, com habitualidade ou em volume que caracterize intuito comercial, operações de circulação de mercadoria, ainda que se iniciem no exterior, ou estou dispensado da emissão da nota fiscal por força da legislação tributária vigente, responsabilizando-me, nos termos da lei e a quem de direito, por informações inverídicas. Declaro ainda que não estou postando conteúdo inflamável, explosivo, causador de combustão espontânea, tóxico, corrosivo, gás ou qualquer outro conteúdo que conste na lista de proibições e restrições disponível no site dos Correios: <a href="https://www.correios.com.br/enviar/proibicoes-e-restricoes/proibicoes-e-restricoes">https://www.correios.com.br/enviar/proibicoes-e-restricoes/proibicoes-e-restricoes</a>.
+					</div>
+					<div>
+						<spam class="conteudo_cidade"></spam> - <spam class="conteudo_data_dia"></spam>/<spam class="conteudo_data_mes"></spam>/<spam class="conteudo_data_ano"></spam> - Assinatura: ________________________________________________
+					</div>
+					<div>
+						<h4>OBSERVAÇÃO:</h4>
+						<div>
+							Constitui crime contra a ordem tributária suprimir ou reduzir tributo, ou contribuição social e qualquer acessório (Lei 8.137/90 Art. 1º, V).
+						</div>
+					</div>
+				</div>
+
+				<br>
+				<div style="text-align: center;">............................................................................................................................................................................</div>
+				<br>
+
+				<div class="declaracao_conteudo">
+					<h1>DECLARAÇÃO DE CONTEÚDO</h1>
+					<div>
+						<div>
+							<h3>REMETENTE</h3>
+							<div>Nome:</div>
+							<div>CPF/CNPJ:</div>
+							<div>Endereço:</div>
+							<div>Cidade: DIAMANTINA</div>
+							<div>
+								<div>Estado: MG</div>
+								<div>CEP: 39100-000</div>
+							</div>
+						</div>
+						<div>
+							<h3>DESTINATÁRIO</h3>
+							<div>Nome:</div>
+							<div>CPF/CNPJ:</div>
+							<div>Endereço:</div>
+							<div>Cidade:</div>
+							<div>
+								<div>Estado:</div>
+								<div>CEP:</div>
+							</div>
+						</div>
+					</div>
+					<h2>IDENTIFICAÇÃO DOS BENS</h2>
+					<div>
+						<div>ITEM</div><div>CONTEÚDO</div><div>QUANTIDADE</div><div>VALOR</div>
+						<div>1</div><div></div><div></div><div></div>
+						<div>2</div><div></div><div></div><div></div>
+						<div>3</div><div></div><div></div><div></div>
+						<div>4</div><div></div><div></div><div></div>
+						<div>5</div><div></div><div></div><div></div>
+						<div>TOTAIS</div><div></div><div></div>
+					</div>
+					<div>
+						Declaro que não me enquadro no conceito de contribuinte previsto no art. 4º da Lei Complementar nº 87/1996, uma vez que não realizo, com habitualidade ou em volume que caracterize intuito comercial, operações de circulação de mercadoria, ainda que se iniciem no exterior, ou estou dispensado da emissão da nota fiscal por força da legislação tributária vigente, responsabilizando-me, nos termos da lei e a quem de direito, por informações inverídicas. Declaro ainda que não estou postando conteúdo inflamável, explosivo, causador de combustão espontânea, tóxico, corrosivo, gás ou qualquer outro conteúdo que conste na lista de proibições e restrições disponível no site dos Correios: <a href="https://www.correios.com.br/enviar/proibicoes-e-restricoes/proibicoes-e-restricoes">https://www.correios.com.br/enviar/proibicoes-e-restricoes/proibicoes-e-restricoes</a>.
+					</div>
+					<div>
+						<spam class="conteudo_cidade"></spam> - <spam class="conteudo_data_dia"></spam>/<spam class="conteudo_data_mes"></spam>/<spam class="conteudo_data_ano"></spam> - Assinatura: ________________________________________________
+					</div>
+					<div>
+						<h4>OBSERVAÇÃO:</h4>
+						<div>
+							Constitui crime contra a ordem tributária suprimir ou reduzir tributo, ou contribuição social e qualquer acessório (Lei 8.137/90 Art. 1º, V).
+						</div>
+					</div>
+				</div>
+		</div>
+	</main>
+	<footer></footer>
+</body>
+<script>
+	let campoLinks = document.getElementById("links");
+	let campoPesquisa = document.getElementById("campo_pesquisa_link");
+	let pagina = document.getElementById("pagina");
+	let campoRastrearObjeto = document.getElementById("campo_rastrear_objeto");
+	let formRastrearObjeto = document.getElementById("form_rastrear_objeto");
+	let botaoMenu = document.getElementById("botao_menu");
+	let campoHeader = document.getElementById("header");
+	
+	let links = [
+		{
+			nome: 'Correios Atende',
+			link: 'https://correiosatende.correios.com.br',
+			descricao: 'correios atende, sistema web de postagem e envio de encomendas, pacote, despacho, contrato, etiqueta, pac, sedex, faturar',
+		},
+		{
+			nome: 'CIE',
+			link: 'https://sqm.correios.com.br',
+			descricao: 'cie, comunidado interno eletronico, pendência, problema',
+		},
+		{
+			nome: 'Rastreamento Interno',
+			link: 'https://websro2/rastreamento/',
+			descricao: 'Sistma de rastreamento sroii sro2, encomenda, pacote, codigo, etiqueta, cep',
+		},
+		{
+			nome: 'CEP - Busca',
+			link: 'https://buscacepintra.correios.com.br/app/localidade_logradouro/index.php',
+			descricao: 'busca cep, endereço, rua , número, bairro, logradouto, cidade, estado, localidade',
+			acessoRapido: true,
+		},
+		{
+			nome: 'Intranet',
+			link: 'https://intranet.correios.com.br/',
+			descricao: 'intranet, informações internas',
+		},
+		{
+			nome: 'SRO Web',
+			link: 'https://sroweb.correios.com.br',
+			descricao: 'sro web, cadastro, posta restante, encomenda, pacote, rastreamento, código de rastreio, lançamento, expedição, baixa interna, agc, entrega, baixa',
+			acessoRapido: true,
+		},
+		{
+			nome: 'Correios',
+			link: 'https://www.correios.com.br/',
+			descricao: 'site dos correios, página',
+		},
+		{
+			nome: 'Correios Normas',
+			link: 'https://normas.correios.com.br/',
+			descricao: 'correios normar, mancat, mandis, mampes, manorg, manual, regras',
+		},
+		{
+			nome: 'Preços e Prazos Nacional',
+			link: 'http://www2.correios.com.br/sistemas/precosPrazos/',
+			descricao: 'preços e prazos nacional, envio, valor, pacote, encomenda, despacho, site, origem, destino',
+		},
+		{
+			nome: 'Preços e Prazos Internacional',
+			link: 'https://efi.correios.com.br/app/simulaPrecoPrazoInternacional/index.php',
+			descricao: 'consulta de preços e prazos internacional, exportação, ems, packet, despacho, enviar, pais, simular',
+		},
+		{
+			nome: 'Help Desk',
+			link: 'http://itsm.correiosnet.int:8080/arsys/shared/login.jsp?/arsys/',
+			descricao: 'os help desk, ajuda, chamado, abrir, abertuda',
+		},
+		{
+			nome: 'IPVA e Licenciamento de MG',
+			link: 'https://ipva1.fazenda.mg.gov.br/ipvaonline/inputConsultaIpvaPorRenavamConsolidadoAnoExercicio.action',
+			descricao: 'ipva, licenciamento, carro, moto, veículo, receita, pagar, documento, lrv, fazenda, minas gerais, mg, governo, imposto, multa, transferência, seguro, ano',
+		},
+		{
+			nome: 'CPF - Consulta',
+			link: 'https://servicos.receita.fazenda.gov.br/servicos/cpf/consultasituacao/consultapublica.asp',
+			descricao: 'consulta cpf, pessoa física, receita fazenda governo',
+		},
+		{
+			nome: 'CNPJ - Consulta',
+			link: 'https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp',
+			descricao: 'consulta cnpj, receita fazenda, empresa, dono, destinatário, qos, representante, pessoa jurídica, governo',
+		},
+		{
+			nome: 'CPF - Impressão com Código',
+			link: 'https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaAndamento/ConsultaAndamento.asp',
+			descricao: 'impressão, imprimir cpf, cartão, código, receita federal, cadastro, pessoa física, consulta, andamento, fazenda, governo',
+		},
+		{
+			nome: 'CPF - Impressão',
+			link: 'https://servicos.receita.fazenda.gov.br/servicos/cpf/impressaocomprovante/ConsultaImpressao.asp',
+			descricao: 'impressão, imprimir cpf, cartão, código, receita federal, cadastro, pessoa física, consulta, andamento, fazenda, governo',
+		},
+		{
+			nome: 'SIG',
+			link: 'file://///Sac1940/mg/PROJETOS/SIG/app/sightml/signew.HTML?84242027?',
+			descricao: 'sig, metas, resultado, receita, indicadores, dve, vagas, gestor, produtos foco',
+		},
+		{
+			nome: 'SGD',
+			link: 'https://sgd.correios.com.br/sgd/',
+			descricao: 'sgd, sistema de gerenciamento de documentos, 2 segunda via de ar digital, cliente, objeto, destinatário, endereço, código, consulta',
+		},
+		{
+			nome: 'SCOL',
+			link: 'http://scol/scol/sisLogisticaReversa/consulta/default.cfm?t=A&m=',
+			descricao: 'scol, consulta, logística reversa, autorização de postagem, código, rastreamento, coleta, entrega, cartão de postagem, código administrativo, objeto, coleta domiciliar, agendada',
+		},
+		{
+			nome: 'SGP',
+			link: 'https://sgp.correios.com.br/',
+			descricao: 'sistema de gestão de pessoas, cnh, curso, ri, recrutamento interno, funcionário, curso externo empregado, inscrição, transferência, simulador sumário, formação, processo seletivo interno, experiência profissional, função, cargo',
+		},
+		{
+			nome: 'Primeira Hora',
+			link: 'https://intranet.correios.com.br/informativos/primeira-hora/',
+			descricao: 'primeira hora, notícias, informação, informativo, conectado, reunião, publicação, comunicado, informa, correios',
+		},
+		{
+			nome: 'Correios Informa',
+			link: 'https://intranet.correios.com.br/informativos/correios-informa/',
+			descricao: 'primeira hora, notícias, informação, informativo, conectado, reunião, publicação, comunicado, informa, correios',
+		},
+		{
+			nome: 'Rede Urgente',
+			link: 'https://intranet.correios.com.br/extra_info/siga/se/mg/notas/rede-urgente/',
+			descricao: 'primeira hora, notícias, informação, informativo, conectado, reunião, publicação, comunicado, informa, correios, rede, urgente',
+		},
+		{
+			nome: 'Universidade Correios',
+			link: 'https://univirtual.correios.com.br/',
+			descricao: 'universidade correios, univirtual, curso, treinamento, ead, tlt',
+		},
+		{
+			nome: 'Rede Em Foco',
+			link: 'http://intranet/cs/diope/informativos',
+			descricao: 'primeira hora, rede em foco, notícias, informação, informativo, conectado, reunião, publicação, comunicado, informa, correios, rede, urgente',
+		},
+		{
+			nome: 'Endereçador de Encomendas',
+			link: 'https://www2.correios.com.br/enderecador/encomendas/',
+			descricao: 'endereçador de encomendas, endereço, cep, destino, encomenda, envio, despacho, rua, bairro',
+		},
+		{
+			nome: 'SGM',
+			link: 'http://sgm',
+			descricao: 'sgm, telegrama, balcão, mensagem, 4h, envio, digitar',
+		},
+		{
+			nome: 'Declaração de Conteúdo Editável',
+			link: 'https://intra.correios.com.br/CS/OPERACAO/VAREJO_E_ATENDIMENTO/ATENDIMENTO_E_COMERCIALIZACAO/PRODUTOS_SERVICOS/DECLARACAO_DE_CONTEUDO/form_declaracao_conteudo_a5.doc',
+			descricao: 'declaração de conteúdo, formulário, nota fiscal, preencher, enviar, declarar',
+		},
+		{
+			nome: 'Declaração de Conteúdo PDF',
+			link: 'https://intra.correios.com.br/CS/OPERACAO/VAREJO_E_ATENDIMENTO/ATENDIMENTO_E_COMERCIALIZACAO/PRODUTOS_SERVICOS/DECLARACAO_DE_CONTEUDO/form_declaracao_conteudoa5.pdf',
+			descricao: 'declaração de conteúdo, formulário, nota fiscal, preencher, enviar, declarar, espelho, solicitação, extrato',
+		},
+		{
+			nome: 'SRP',
+			link: 'https://srp.correios.com.br/',
+			descricao: 'sistema de registro de ponto, falta, frequência, horário, cartão de ponto, férias, marcarção, justificativa, abono, licença, atestado, folga, feriado',
+		},
+		{
+			nome: 'SIGESF - Senha Gerenciador',
+			link: 'http://10.85.118.139:8080/sigesfLocal/gerenciadorChamadas/gerenciador.jsf',
+			descricao: 'sistema de gerenciamento de senhas, sigesf, fila, cliente, serviço, posição, gestor, gerenciador',
+			acessoRapido: true,
+		},
+		{
+			nome: 'SIGESF - Senha Gestor',
+			link: 'http://10.85.118.139:8080/sigesfLocal',
+			descricao: 'sistema de gerenciamento de senhas, sigesf, fila, cliente, serviço, posição, gestor, gerenciador',
+		},
+		{
+			nome: 'CNH - Acompanhar Entrega',
+			link: 'https://transito.mg.gov.br/habilitacao/emissao-de-documentos-de-habilitacao/acompanhar-entrega-de-cnh',
+			descricao: 'acompanhar entrega da cnh, carteira nacional de habilitação, motorista, carro, moto, veículo, detran mg, minas gerais, carteiro, códito de rastreio, ar',
+		},
+		{
+			nome: 'RH 24 horas',
+			link: 'https://rh24horas.correios.com.br/',
+			descricao: 'rh 24 horas, ponto, férias, contra cheque, salário, vencimento, conta, pagamento, recebimento, currículo, curriculum, aumento, remuneração, base, curso, experiência, anuênio, aumento, promoção, horizontal, mérito, tempo, serviço, trabalho',
+		},
+		{
+			nome: 'GCOP',
+			link: 'https://ssp0106/ceofisp/sistema/',
+			descricao: 'gecop direto, sistema, central de seviços financeiros, deslocamento, catraca, vale estacionamento, pedágio, administrativo, viagem, departamento financeiro defin, numerário, gastos emergenciais, solicitação de pagamento ipem inmetro, comprovação de despesas, apoio, taxi, onibus, convocação, ceofi, sistema, adiantamento de numerário, comprovar, solicitar, passagem, transporte',
+		},
+		{
+			nome: 'Você Consulta',
+			link: 'https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/voce-consulta',
+			descricao: 'voce, consulta, serviço, dados pessoais, achei, encontrar, funcionario, empregado, localizar, buscar, matricula, nome, lotação, unidade, agência',
+		},
+		{
+			nome: 'Tele Sena',
+			descricao: 'tele sena, telesena, semanal, resultado, premio, sbt, jequiti, bau, carnê, premiação, sorteio, ganhar, aniversário, natal, mães, ano novo, páscoa, independência',
+			funcao: 'carregaTeleSena',
+		},
+		{
+			nome: 'Editor HTML, CSS, JavaScript',
+			link: 'https://liveweave.com/',
+			descricao: 'editor, html, css, javascript, desenvolver, criar, web, página, código, fonte, script',
+		},
+		{
+			nome: 'Declaração de Conteúdo',
+			descricao: 'declaração de coteúdo, nota fiscal, fiscalização, discriminação, listar bens, ítens de envío, endereço',
+			funcao: 'imprimirDeclaracaoConteudo',
+			acessoRapido: true,
+		},
+		{
+			nome: 'SEI',
+			link: 'https://sei.correios.com.br',
+			descricao: 'sei correios, processo, despacho',
+		},
+		{
+			nome: 'e-mail Outlook',
+			descricao: 'email do outlook, mensagem, comunicação',
+			link: 'https://outlook.office.com/mail/',
+		},
+		{
+			nome: 'Consulta NCM',
+			link: 'https://portalunico.siscomex.gov.br/classif/#/sumario?perfil=publico',
+			descricao: 'ncm, consulta, exportação, importação, exterior, enviar, despachar, código, encomenda, produto, siscomex',
+		},
+		{
+			nome: 'Etiqueta Adesiva',
+			descricao: 'folha com 14 etiquetas adesivas',
+			funcao: 'carregaEtiquetaAdesiva',
+		},
+		{
+			nome: 'Correios Atende Chave PIX',
+			link: 'https://correiosatende.correios.com.br/chave-pix/',
+			descricao: 'correios, atende, chave, pix, envio, sedex, pac, encomenda, pagar, pagamento, qr, code',
+		},
+	];
+	
+	campoPesquisa.addEventListener("input", pesquisaLink);
+	formRastrearObjeto.addEventListener("submit", rastrearObjeto);
+	botaoMenu.addEventListener("click", mostraMenu);
+	
+	function mostraMenu() {
+		if(campoLinks.classList.contains("ocultar_menu")) {
+			campoLinks.classList.remove("ocultar_menu");
+			botaoMenu.textContent = "Esconder Menu";
+		}
+		else {
+			campoLinks.classList.add("ocultar_menu");
+			botaoMenu.textContent = "Mostrar Menu";
+		}
+	}
+	
+	function rastrearObjeto(event = false) {
+		event.preventDefault();
+		let codigo = campoRastrearObjeto.value;
+		let url = 'https://srointranet.correios.com.br/rastreamento?objetos=' + codigo;
+		criarFrame(url);
+		campoRastrearObjeto.value = '';
+	}
+	
+	function criarFrame(url) {
+		if(!Array.isArray(url)) {
+			let iframe = document.createElement('iframe');
+			iframe.src = url;
+			pagina.innerHTML = '';
+			pagina.appendChild(iframe);
+		}
+	}
+	
+	function gerarItemMenuLink(item) {
+		let li = document.createElement("li");
+		li.textContent = item.nome;
+		if(item.funcao) {
+			li.addEventListener("click", function() {
+				window[item.funcao]();
+				rolarTelaTopo();
+				campoPesquisa.value = '';
+			});
+		}
+		else {
+			a = document.createElement("a");
+			a.textContent = '>';
+			a.target = '_blank';
+			a.href = item.link;
+
+			li.append(a);
+			
+			li.addEventListener("click", function() {
+				criarFrame(item.link);
+				rolarTelaTopo();
+				campoPesquisa.value = '';
+			});
+		}
+		return li;
+	}
+
+	function pesquisaLink() {
+		let termo = campoPesquisa.value;
+		pagina.innerHTML = '';
+		if(termo.length > 0) {
+			let ul = document.createElement("ul");
+			ul.classList.add("lista_links");
+			for(let i of links) {
+				if(i.descricao.toLowerCase().includes(termo.toLowerCase())) {
+					let li = gerarItemMenuLink(i);
+					ul.appendChild(li);
+				}
+			}
+			pagina.appendChild(ul);
+		}
+	}
+	
+	function populaMenu() {
+		links.sort((a,b) => a.nome.localeCompare(b.nome));
+		for(let i of links) {
+			let li =gerarItemMenuLink(i);
+			campoLinks.append(li);
+			if(i.acessoRapido) {
+				let button = document.createElement("button");
+				button.textContent = i.nome;
+				if(i.funcao) {
+					button.addEventListener("click", window[i.funcao]);
+				}
+				else {
+					button.addEventListener("click", function() { criarFrame(i.link); });
+				}
+				campoHeader.append(button);
+			}
+		}
+	}
+	populaMenu();
+	
+	function rolarTelaTopo() {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	}
+
+	function carregaTeleSena() {
+		let teleSenasDisponiveis = [
+			{
+				nome: 'Aniversário',
+				id: 'aniversario',
+			},
+			{
+				nome: 'Ano Novo',
+				id: 'ano-novo',
+			},
+			{
+				nome: 'Carnaval',
+				id: 'carnaval',
+			},
+			{
+				nome: 'Independência',
+				id: 'independencia',
+			},
+			{
+				nome: 'Mães',
+				id: 'maes',
+			},
+			{
+				nome: 'Natal',
+				id: 'natal',
+			},
+			{
+				nome: 'Pais',
+				id: 'pais',
+			},
+			{
+				nome: 'Páscoa',
+				id: 'pascoa',
+			},
+			{
+				nome: 'Primavera',
+				id: 'primavera',
+			},
+			{
+				nome: 'São João',
+				id: 'sao-joao',
+			},
+		];
+
+		let div = document.createElement('div');
+		div.classList.add('formulario');
+		let labelAno = document.createElement('label');
+		labelAno.textContent = 'Ano';
+		let ano = document.createElement('select');
+		let labelCampanha = document.createElement('label');
+		labelCampanha.textContent = 'Campanha';
+		let campanha = document.createElement('select');
+		campanha.addEventListener('change', atualizaLink);
+		let labelEdicao = document.createElement('label');
+		labelEdicao.textContent = 'Edição';
+		let edicao = document.createElement('input');
+		edicao.type = 'number';
+		edicao.addEventListener('input', atualizaLink);
+		let linkComum = document.createElement('a');
+		linkComum.textContent = 'Ver Resultado TeleSena Comum ';
+		let linkSemanal = document.createElement('a');
+		linkSemanal.textContent = 'Ver Resultado TeleSena Semanal ';
+		let anoAtual = new Date().getFullYear();
+		let anoLancamento = 1991;
+		
+		for(let i of teleSenasDisponiveis) {
+			let option = document.createElement('option');
+			option.value = i.id;
+			option.textContent = i.nome;
+			campanha.append(option);
+		}
+		
+		for(let i = 0; i < 7; i++) {
+			let option = document.createElement('option');
+			option.value = anoAtual - i;
+			option.textContent = anoAtual - i;
+			ano.append(option);
+			ano.addEventListener('change', atualizaLink);
+		}
+		
+		function atualizaLink() {
+			linkComum.href = 'https://www.telesena.com.br/#/resultados/impressao/completa/' + ano.value + '/' + (campanha.value == 'aniversario' ? ((ano.value - anoLancamento) + '-') : '') + campanha.value + '.html';
+			linkComum.target = '_blank';
+
+			linkSemanal.href = 'https://www.telesena.com.br/#/resultados/impressao/completa/' + ano.value + '/edicao-n-' + edicao.value + '.html';
+			linkSemanal.target = '_blank';
+		}
+		atualizaLink();
+		
+		pagina.innerHTML = '';
+		div.append(labelAno);
+		div.append(ano);
+		div.append(labelCampanha);
+		div.append(campanha);
+		div.append(linkComum);
+		div.append(labelEdicao);
+		div.append(edicao);
+		div.append(linkSemanal);
+		pagina.append(div);
+	}
+	
+	function carregaEtiquetaAdesiva() {
+		pagina.innerHTML = document.getElementById('pagina_etiqueta_adesiva').innerHTML;
+		document.getElementById("botao_imprimir_etiqueta_adesiva").addEventListener("click", imprimirEtiquetaAdesiva);
+	}
+
+	function substituirConteudo() {
+		let substituirCidade = document.querySelectorAll('.conteudo_cidade');
+		substituirCidade.forEach(elemento => {
+			elemento.textContent = 'Diamantina';
+		});
+	
+		let substituirDataDia = document.querySelectorAll('.conteudo_data_dia');
+		substituirDataDia.forEach(elemento => {
+			elemento.textContent = String(new Date().getDate()).padStart(2,'0');	// coloca zero na frente para ficar com 2 digitos
+		});
+	
+		let substituirDataMes = document.querySelectorAll('.conteudo_data_mes');
+		substituirDataMes.forEach(elemento => {
+			elemento.textContent = String(((new Date().getMonth()) + 1)).padStart(2,'0');	// coloca zero na frente para ficar com 2 digitos
+		});
+	
+		let substituirDataAno = document.querySelectorAll('.conteudo_data_ano');
+		substituirDataAno.forEach(elemento => {
+			elemento.textContent = new Date().getFullYear();
+		});
+	}
+
+	function imprimirEtiquetaAdesiva () {
+		let css = document.getElementsByTagName('style')[0];
+		let destino = document.createElement('div');
+		let textareas = pagina.getElementsByTagName('textarea');
+		for(let i = 0; i < textareas.length; i++) {
+			console.log(textareas[i].value);
+			let texto = document.createElement('div');
+			texto.innerHTML = '<pre>' + textareas[i].value + '</pre>';
+			destino.append(texto);
+		}
+		let janelaImprimir = window.open('','', 'width=800, height=800');
+		janelaImprimir.document.write('</html><head><title>Etiqueta Adesiva</title><style>#botao_imprimir_etiqueta_adesiva{display:none;}</style><style>' + css.innerHTML + '</style></head><body><div class="folha_14_etiquetas">');
+		janelaImprimir.document.write(destino.innerHTML);
+		janelaImprimir.document.write('</div></body></html>');
+		janelaImprimir.document.close();
+		janelaImprimir.onload = function() {
+			janelaImprimir.print();
+		};
+	}
+
+	function imprimirDeclaracaoConteudo () {
+		substituirConteudo();
+		let pagina = document.getElementById('pagina_declaracao_de_conteudo').innerHTML;
+		let janelaImprimir = window.open('','', 'width=800, height=800');
+		janelaImprimir.document.write('</html><head><title>Declaração de Conteúdo</title></head><body>');
+		janelaImprimir.document.write(pagina);
+		janelaImprimir.document.write('</body></html>');
+		janelaImprimir.document.close();
+		janelaImprimir.onload = function() {
+			janelaImprimir.print();
+		};
+	}
+</script>
+</html>

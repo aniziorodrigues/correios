@@ -132,7 +132,7 @@
 				Intranet 2.0
 			</h1>
 			<h2 class="alinhamento_texto_horizontal_centro">
-				Versão 1.3.0.9
+				Versão 1.4.0.0
 			</h2>
 			<h3>Em desenvolvimento</h3>
 			<p>
@@ -140,22 +140,23 @@
 			</p>
 		</div>
 		<div id="pagina_etiqueta_adesiva" class="oculto">
-			<button id="botao_imprimir_etiqueta_adesiva">Imprimir</button>
+			<button id="botao_imprimir_etiqueta_adesiva">Imprimir</button><br>
+			<input type="checkbox" checked  id="checkbox_alinhar_centro_etiqueta_adesiva"> Alinhar no Centro
 			<div class="folha_14_etiquetas">
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
-				<textarea></textarea>
+				<textarea>1</textarea>
+				<textarea>2</textarea>
+				<textarea>3</textarea>
+				<textarea>4</textarea>
+				<textarea>5</textarea>
+				<textarea>6</textarea>
+				<textarea>7</textarea>
+				<textarea>8</textarea>
+				<textarea>9</textarea>
+				<textarea>10</textarea>
+				<textarea>11</textarea>
+				<textarea>12</textarea>
+				<textarea>13</textarea>
+				<textarea>14</textarea>
 			</div>
 		</div>
 		<div id="pagina_declaracao_de_conteudo" class="oculto">
@@ -529,9 +530,24 @@
 			descricao: 'gecop direto, sistema, central de seviços financeiros, deslocamento, catraca, vale estacionamento, pedágio, administrativo, viagem, departamento financeiro defin, numerário, gastos emergenciais, solicitação de pagamento ipem inmetro, comprovação de despesas, apoio, taxi, onibus, convocação, ceofi, sistema, adiantamento de numerário, comprovar, solicitar, passagem, transporte',
 		},
 		{
+			nome: 'Achei',
+			link: 'https://achei.correios.com.br/app/index.php',
+			descricao: 'achei, empregado, funcionário, lotação, unidade, agência, unidade, localizar, buscar, pesquisar, encontrar, nome, cdd, ac, distribuição, matrícula, nome, cliente, negócio, fornecedor, bens, patrimonio, sistema',
+		},
+		{
 			nome: 'Você Consulta',
 			link: 'https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/voce-consulta',
 			descricao: 'voce, consulta, serviço, dados pessoais, achei, encontrar, funcionario, empregado, localizar, buscar, matricula, nome, lotação, unidade, agência',
+		},
+		{
+			nome: 'NetAdmin',
+			link: 'https://asp.correiosnet.int/netadmin/principal.asp',
+			descricao: 'netadmin, usuário, dados, horário, email, catálogo, lista, grupo, alterar, rede, particular, sismail, endereço, redefinir, exibir, logon, login, distribuição, contato, caixa, postal, segurança',
+		},
+		{
+			nome: 'SCI',
+			link: 'http://10.87.195.188/s_desktop/',
+			descricao: 'sci, sistema de controle das informações, sistema, controle, informações, dw, microstrategy, erm, consulta, data, máxima, mapa, rota',
 		},
 		{
 			nome: 'Tele Sena',
@@ -539,15 +555,40 @@
 			funcao: 'carregaTeleSena',
 		},
 		{
+			nome: 'Serviços para Empregado',
+			descricao: 'serviços, empregado, funcionário, plano, saude, afastamento, email, telefone, celular, pessoal, residencia, endereço, cnh, dependente, imposto, renda, irpf, vale, transporte, epatri, e-patri, plr, pensão, alimentícia, estágio, recesso, jornada, trabalho, reembolso, km, crachá, eleições, diárias, carta, margem, conta, bancária, benegício, aposentadoria, débito, auxílio, dependente, deficiência, creche, refeição',
+			link: 'https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/catalogo-de-servicos/para-o-empregado',
+		},
+		{
+			nome: 'Serviços para Gestor',
+			descricao: 'serviços, gestor, aadc, aat, empregado, funcionário, benefício, aposentadoria, jornada, controle, funções, gestão, assessor, especial, débito, falta, injstificada, abandono, emprego, férias, aviso, fracionamento, ponto, eletrônico, portaria, dispensa, desigação, substituição, interinidade,, subdelegação, competência, fiscal, contrato, grupo, trabalho, transferência, processo, seletivo, interno, reembolso, km, reitegração, judicial, administrativa, pecuniária, convocação, sábado',
+			link: 'https://intranet.correios.com.br/cs/vigep/central-de-servicos-de-gestao-de-pessoas/catalogo-de-servicos/para-o-gestor',
+		},
+		{
 			nome: 'Editor HTML, CSS, JavaScript',
 			link: 'https://liveweave.com/',
 			descricao: 'editor, html, css, javascript, desenvolver, criar, web, página, código, fonte, script',
+		},
+		{
+			nome: 'Editor de Código Fonte',
+			link: 'https://www.mycompiler.io/pt/new/php',
+			descricao: 'editor, deno, nodejs, python, ruby, go, c, c++, java, c#, typescript, php, bash, r, octave, fortran, lua, erlang, sql, mysql, mongodb, clojure, d, prel, kotlin, swift, rust, assembly, desenvolver, criar, web, página, código, fonte, script',
+		},
+		{
+			nome: 'GTRAT',
+			link: 'http://10.87.195.188/pagina_gtrat/',
+			descricao: 'gtrat, tratamento, guia de encaminhamento, plano de expedição, fornecimento de unitizadores, motivos de baixa, gccap, efic, carga, efetivo, iepe, ipee, rex, sdx12, sdxe, sdxn, prot ppli, pacn, packet, pace',
 		},
 		{
 			nome: 'Declaração de Conteúdo',
 			descricao: 'declaração de coteúdo, nota fiscal, fiscalização, discriminação, listar bens, ítens de envío, endereço',
 			funcao: 'imprimirDeclaracaoConteudo',
 			acessoRapido: true,
+		},
+		{
+			nome: 'Etiquetas AGC',
+			descricao: 'imprimir, etiqueta, agc adesivo, senador, mourão, planalto de minas, desembargador otoni, guinda, mendanha, inhaí, são joão, sopa, conselheiro mata, extração, expedição, enviar, lançar, ldi, prazo, distribuição interna',
+			funcao: 'gerarEtiquetaAGC',
 		},
 		{
 			nome: 'SEI',
@@ -778,11 +819,6 @@
 		div.append(linkSemanal);
 		pagina.append(div);
 	}
-	
-	function carregaEtiquetaAdesiva() {
-		pagina.innerHTML = document.getElementById('pagina_etiqueta_adesiva').innerHTML;
-		document.getElementById("botao_imprimir_etiqueta_adesiva").addEventListener("click", imprimirEtiquetaAdesiva);
-	}
 
 	function substituirConteudo() {
 		let substituirCidade = document.querySelectorAll('.conteudo_cidade');
@@ -806,20 +842,78 @@
 		});
 	}
 
+	let listaAGC = [
+		{
+			nome: 'AGC Mendanha',
+			cep: '39101-970',
+		},
+		{
+			nome: 'AGC Sopa',
+			cep: '39102-970',
+		},
+		{
+			nome: 'AGC Guinda',
+			cep: '39103-970',
+		},
+		{
+			nome: 'AGC Extração',
+			cep: '39105-970',
+		},
+		{
+			nome: 'AGC Conselheiro Mata',
+			cep: '39106-970',
+		},
+		{
+			nome: 'AGC São João da Chapada',
+			cep: '39110-970',
+		},
+		{
+			nome: 'AGC Inhaí',
+			cep: '39111-970',
+		},
+		{
+			nome: 'AGC Senador Mourão',
+			cep: '39112-970',
+		},
+		{
+			nome: 'AGC Desembargador Otoni',
+			cep: '39113-970',
+		},
+		{
+			nome: 'AGC Planalto de Minas',
+			cep: '39114-970',
+		},
+	];
+
+	function gerarEtiquetaAGC() {
+		carregaEtiquetaAdesiva();
+		let textareas = pagina.getElementsByTagName('textarea');
+		for(let i = 0; i < textareas.length; i++) {
+			textareas[i].value = listaAGC[i].nome + '\n' + listaAGC[i].cep;
+			textareas[i].style.fontSize = 'xxx-large';
+		}
+	}
+
+	function carregaEtiquetaAdesiva() {
+		pagina.innerHTML = document.getElementById('pagina_etiqueta_adesiva').innerHTML;
+		document.getElementById("botao_imprimir_etiqueta_adesiva").addEventListener("click", imprimirEtiquetaAdesiva);
+	}
+
 	function imprimirEtiquetaAdesiva () {
-		let css = document.getElementsByTagName('style')[0];
+		let alinharCentro = document.getElementById('checkbox_alinhar_centro_etiqueta_adesiva').checked;
 		let destino = document.createElement('div');
 		let textareas = pagina.getElementsByTagName('textarea');
 		for(let i = 0; i < textareas.length; i++) {
 			console.log(textareas[i].value);
 			let texto = document.createElement('div');
 			texto.innerHTML = '<pre>' + textareas[i].value + '</pre>';
+			texto.style = textareas[i].style;
 			destino.append(texto);
 		}
 		let janelaImprimir = window.open('','', 'width=800, height=800');
-		janelaImprimir.document.write('</html><head><title>Etiqueta Adesiva</title><style>#botao_imprimir_etiqueta_adesiva{display:none;}</style><style>' + css.innerHTML + '</style></head><body><div class="folha_14_etiquetas">');
+		janelaImprimir.document.write('<!DOCTYPE html><html><head><title>Etiqueta Adesiva</title><style>#botao_imprimir_etiqueta_adesiva{display:none;} @page {size: A4 portrait;margin: 16mm 4mm;}  .folha_14_etiquetas{display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(7, 1fr); grid-auto-rows: 1fr; gap: 0 6mm; margin: 0; padding: 0; width: 100%; height: 100%; ' + (alinharCentro ? 'text-align: center;' : '') + '}</style></head><body class="folha_14_etiquetas">');
 		janelaImprimir.document.write(destino.innerHTML);
-		janelaImprimir.document.write('</div></body></html>');
+		janelaImprimir.document.write('</body></html>');
 		janelaImprimir.document.close();
 		janelaImprimir.onload = function() {
 			janelaImprimir.print();

@@ -817,7 +817,7 @@
 			let li =gerarItemMenuLink(i);
 			campoLinks.append(li);
 			if(i.acessoRapido) {
-				let button = document.createElement("a");
+				let button = document.createElement("button");
 				button.textContent = i.nome;
 				if(i.funcao) {
 					button.addEventListener("click", window[i.funcao]);

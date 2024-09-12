@@ -817,12 +817,13 @@
 			let li =gerarItemMenuLink(i);
 			campoLinks.append(li);
 			if(i.acessoRapido) {
-				let button = document.createElement("button");
+				let button = document.createElement("a");
 				button.textContent = i.nome;
 				if(i.funcao) {
 					button.addEventListener("click", window[i.funcao]);
 				}
 				else {
+					button.href = i.link;
 					button.addEventListener("click", function() { criarFrame(i.link); });
 				}
 				campoHeader.append(button);

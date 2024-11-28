@@ -85,21 +85,6 @@
 		.alinhamento_texto_horizontal_centro {
 			text-align: center;
 		}
-		.folha_14_etiquetas {
-			display: grid;
-			grid-template-columns: 96mm 96mm;
-			grid-template-rows: repeat(7, 36);
-			gap: 2mm 6mm;
-			padding: 0;
-			margin: 16.5mm 6mm;
-			width: 210mm;
-			height: 297mm;
-		}
-		.folha_14_etiquetas > * {
-			display: block;
-			width: 100%;
-			height: 100%;
-		}
 		.formulario > * {
 			display: block;
 			min-width: 200px;
@@ -134,10 +119,6 @@
 			<h2 class="alinhamento_texto_horizontal_centro">
 				Versão 12.11.24-10.17
 			</h2>
-			<h3>Em desenvolvimento</h3>
-			<p>
-				Impressão de etiquetas adesivas
-			</p>
 		</div>
 		<div id="pagina_comunidades_distritos_diamantina_mg" class="oculto">
 			<h3>39101970</h3>
@@ -998,85 +979,7 @@
 			elemento.textContent = new Date().getFullYear();
 		});
 	}
-
-	let listaAGC = [
-		{
-			nome: 'AGC Mendanha',
-			cep: '39101-970',
-		},
-		{
-			nome: 'AGC Sopa',
-			cep: '39102-970',
-		},
-		{
-			nome: 'AGC Guinda',
-			cep: '39103-970',
-		},
-		{
-			nome: 'AGC Extração',
-			cep: '39105-970',
-		},
-		{
-			nome: 'AGC Conselheiro Mata',
-			cep: '39106-970',
-		},
-		{
-			nome: 'AGC São João da Chapada',
-			cep: '39110-970',
-		},
-		{
-			nome: 'AGC Inhaí',
-			cep: '39111-970',
-		},
-		{
-			nome: 'AGC Senador Mourão',
-			cep: '39112-970',
-		},
-		{
-			nome: 'AGC Desembargador Otoni',
-			cep: '39113-970',
-		},
-		{
-			nome: 'AGC Planalto de Minas',
-			cep: '39114-970',
-		},
-	];
-
-	function gerarEtiquetaAGC() {
-		carregaEtiquetaAdesiva();
-		let textareas = pagina.getElementsByTagName('textarea');
-		for(let i = 0; i < textareas.length; i++) {
-			textareas[i].value = listaAGC[i].nome + '\n' + listaAGC[i].cep;
-			textareas[i].style.fontSize = 'xxx-large';
-		}
-	}
-
-	function carregaEtiquetaAdesiva() {
-		pagina.innerHTML = document.getElementById('pagina_etiqueta_adesiva').innerHTML;
-		document.getElementById("botao_imprimir_etiqueta_adesiva").addEventListener("click", imprimirEtiquetaAdesiva);
-	}
-
-	function imprimirEtiquetaAdesiva () {
-		let alinharCentro = document.getElementById('checkbox_alinhar_centro_etiqueta_adesiva').checked;
-		let destino = document.createElement('div');
-		let textareas = pagina.getElementsByTagName('textarea');
-		for(let i = 0; i < textareas.length; i++) {
-			console.log(textareas[i].value);
-			let texto = document.createElement('div');
-			texto.innerHTML = '<pre>' + textareas[i].value + '</pre>';
-			texto.style = textareas[i].style;
-			destino.append(texto);
-		}
-		let janelaImprimir = window.open('','', 'width=800, height=800');
-		janelaImprimir.document.write('<!DOCTYPE html><html><head><title>Etiqueta Adesiva</title><style>#botao_imprimir_etiqueta_adesiva{display:none;} @page {size: A4 portrait;margin: 16mm 4mm;}  .folha_14_etiquetas{display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(7, 1fr); grid-auto-rows: 1fr; gap: 0 6mm; margin: 0; padding: 0; width: 100%; height: 100%; ' + (alinharCentro ? 'text-align: center;' : '') + '}</style></head><body class="folha_14_etiquetas">');
-		janelaImprimir.document.write(destino.innerHTML);
-		janelaImprimir.document.write('</body></html>');
-		janelaImprimir.document.close();
-		janelaImprimir.onload = function() {
-			janelaImprimir.print();
-		};
-	}
-
+	
 	function imprimirDeclaracaoConteudo () {
 		substituirConteudo();
 		let pagina = document.getElementById('pagina_declaracao_de_conteudo').innerHTML;

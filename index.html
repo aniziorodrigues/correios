@@ -246,6 +246,19 @@
 				<li>VISITADOR</li>
 			</ul>
 		</div>
+		<div id="pagina_etiqueta_90_60">
+			<style>
+				.etiqueta_90_60 {
+					width: 90mm;
+					height: 60mm;
+					padding: 2mm;
+					display: flex;
+				}
+				<div class="etiqueta_90_60">
+					Texto a ser impresso
+				</div>
+			</style>
+		</div>
 		<div id="pagina_declaracao_de_conteudo" class="oculto">
 			<style>
 				.declaracao_conteudo h4 {
@@ -663,6 +676,11 @@
 			funcao: 'carregaTeleSena',
 		},
 		{
+			nome: 'Etiqueta 90 x 60',
+			descricao: 'etiqueta, adesiva, 90, 60, impressora, térmica, termica, imprimir, impressão',
+			funcao: 'carregaEtiqueta9060',
+		},
+		{
 			nome: 'Comunidades AGC',
 			descricao: 'agc, correios, zona rural, lista, distrito, comunidade, lugarejo, roça, mendanha, sopa, guinda, extração, curralinho, conselheiro mata, são joão da chapada, inhaí, senador mourão, desembargador otoni, planalto de minas',
 			funcao: 'carregarComunidadesDistritosDiamantinaMg',
@@ -830,6 +848,18 @@
 
 	function carregarComunidadesDistritosDiamantinaMg() {
 		pagina.innerHTML = document.getElementById('pagina_comunidades_distritos_diamantina_mg').innerHTML;
+	}
+	
+	function carregarComunidadesDistritosDiamantinaMg() {
+		let pagina = document.getElementById('pagina_etiqueta_90_60').innerHTML;
+		let janelaImprimir = window.open('','', 'width=800, height=800');
+		janelaImprimir.document.write('</html><head><title>Etiqueta 90 x 60</title></head><body>');
+		janelaImprimir.document.write(pagina);
+		janelaImprimir.document.write('</body></html>');
+		janelaImprimir.document.close();
+		janelaImprimir.onload = function() {
+			janelaImprimir.print();
+		};
 	}
 	
 	function carregaTeleSena() {
